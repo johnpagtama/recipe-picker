@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --emerald-60: oklch(60% 0.13497256837054888 160.33697826056857);
+  --emerald-70: oklch(70% 0.157 160.32);
+  --emerald-80: oklch(80% 0.16379803264788131 160.39227336069396);
+  --emerald-90: oklch(90.02% 0.16379803264788131 160.39227336069396);
+}

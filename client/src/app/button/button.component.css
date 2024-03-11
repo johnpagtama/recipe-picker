@@ -3,15 +3,16 @@ button {
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.45rem 1rem;
-  &:hover {
-    cursor: pointer;
-  }
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .primary {
-  background-color: red;
+  background-color: var(--emerald-70);
 }
 
 .secondary {
-  background-color: blue;
+  background-color: var(--emerald-80);
 }
