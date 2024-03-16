@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { RecipeService } from './recipe.service';
 import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
@@ -12,10 +11,8 @@ import { InputComponent } from './input/input.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title = 'client';
-
-  private recipeSubscription?: Subscription;
 
   constructor(private recipeService: RecipeService) {}
 
@@ -23,15 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getRecipe();
   }
 
-  ngOnDestroy(): void {
-    this.recipeSubscription?.unsubscribe();
-  }
-
   getRecipe(): void {
-    this.recipeSubscription = this.recipeService
-      .getRecipe()
-      .subscribe((response) => {
-        console.log(response);
-      });
+    this.recipeService.getRecipe().subscribe((response) => {
+      console.log(response);
+    });
   }
 }
