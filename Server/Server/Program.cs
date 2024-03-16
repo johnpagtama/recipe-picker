@@ -1,10 +1,10 @@
-var AllowedOrigins = "_allowedOrigins";
+var AllowedOrigins = "AllowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(AllowedOrigins, policy =>
+    options.AddPolicy(name: AllowedOrigins, policy =>
     {
         policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
     });
