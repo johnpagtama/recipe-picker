@@ -3,6 +3,6 @@
     public class Hit
     {
         public Recipe? Recipe { get; set; }
-        public Links? _Links { get; set; }
+        public LinkNext? _Links { get; set; }
     }
 }
