@@ -1,3 +1,5 @@
+using Server;
+
 var AllowedOrigins = "AllowedOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,11 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
     });
+});
+
+builder.Services.AddHttpClient<IRecipeService, RecipeService>(httpclient =>
+{
+    httpclient.BaseAddress = new Uri("https://api.edamam.com/api/recipes/v2");
 });
 
 builder.Services.AddControllers();
