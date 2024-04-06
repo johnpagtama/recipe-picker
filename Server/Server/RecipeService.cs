@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Newtonsoft.Json;
+using Server.Models;
 
 namespace Server
 {
@@ -11,9 +12,15 @@ namespace Server
             _httpClient = httpClient;
         }
 
-        public async Task<ActionResult<string>> GetRecipes(string? type, string? appId, string? appKey, string? query)
+        public async Task<ResponseModel?> GetRecipes(string? query, string? appId, string? appKey)
         {
-            return await _httpClient.GetStringAsync($"?type={type}&q={query}&app_id={appId}&app_key={appKey}");
+            HttpResponseMessage response = await _httpClient.GetAsync($"?type=public&q={query}&app_id={appId}&app_key={appKey}");
+
+            response.EnsureSuccessStatusCode();
+
+            string stringResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<ResponseModel>(stringResponse);
         }
     }
 }
