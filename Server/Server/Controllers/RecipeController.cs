@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Server.Models;
 
 namespace Server.Controllers
 {
@@ -19,9 +21,9 @@ namespace Server.Controllers
 
         // GET: RecipeController
         [HttpGet(Name = "GetRecipes")]
-        public async Task<ActionResult<string>> GetRecipes()
+        public async Task<ResponseModel?> GetRecipes([FromQuery(Name = "query"), BindRequired] string query)
         {
-            return await _recipeService.GetRecipes("public", _configuration["Recipe:AppID"], _configuration["Recipe:AppKey"], "beef");
+            return await _recipeService.GetRecipes(query, _configuration["Recipe:AppID"], _configuration["Recipe:AppKey"]);
         }
     }
 }

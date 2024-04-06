@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Server.Models;
 
 namespace Server
 {
     public interface IRecipeService
     {
-        Task<ActionResult<string>> GetRecipes(string? type, string? appId, string? appKey, string? query);
+        Task<ResponseModel?> GetRecipes(string? query, string? appId, string? appKey);
     }
 }
