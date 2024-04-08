@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Server.Models;
+//using Microsoft.AspNetCore.WebUtilities;
 
 namespace Server
 {
@@ -12,7 +13,7 @@ namespace Server
             _httpClient = httpClient;
         }
 
-        public async Task<ResponseModel?> GetRecipes(string? query, string? appId, string? appKey)
+        public async Task<ResponseModel?> GetRecipes(string? query, string? appId, string? appKey, IEnumerable<string>? dietLabel)
         {
             HttpResponseMessage response = await _httpClient.GetAsync($"?type=public&q={query}&app_id={appId}&app_key={appKey}");
 

@@ -21,9 +21,9 @@ namespace Server.Controllers
 
         // GET: RecipeController
         [HttpGet(Name = "GetRecipes")]
-        public async Task<ResponseModel?> GetRecipes([FromQuery(Name = "query"), BindRequired] string query)
+        public async Task<ResponseModel?> GetRecipes([FromQuery(Name = "query"), BindRequired] string query, [FromQuery(Name = "dietLabel")] IEnumerable<string>? dietLabel = null)
         {
-            return await _recipeService.GetRecipes(query, _configuration["Recipe:AppID"], _configuration["Recipe:AppKey"]);
+            return await _recipeService.GetRecipes(query, _configuration["Recipe:AppID"], _configuration["Recipe:AppKey"], dietLabel);
         }
     }
 }
